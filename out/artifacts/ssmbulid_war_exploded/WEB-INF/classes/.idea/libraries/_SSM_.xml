@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="练手项目 SSM整合 图书管理系统">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
