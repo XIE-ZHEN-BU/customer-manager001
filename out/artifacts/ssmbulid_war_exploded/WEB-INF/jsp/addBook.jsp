@@ -18,7 +18,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>新增书籍</small>
+                    <small>新增客户</small>
                 </h1>
             </div>
         </div>
@@ -27,15 +27,15 @@
 
     <form action="${pageContext.request.contextPath}/book/addBook" method="post">
         <div class="form-group">
-            <label>书籍名称：</label>
+            <label>客户名称：</label>
             <input type="text" name="bookName"class="form-control" required>
         </div>
         <div class="form-group">
-            <label>书籍数量：</label>
+            <label>产品数量：</label>
             <input type="text" name="bookCounts" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>书籍描述：</label>
+            <label>产品描述：</label>
             <input type="text" name="detail" class="form-control" required>
         </div>
         <div class="form-group">

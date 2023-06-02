@@ -1,0 +1,8 @@
+1.
+Zerotier
+
+2.Web项目发布至公网Tomcat 17611681551   （WINDOWS版本）
+https://www.bilibili.com/video/BV1rX4y1F79q?p=8&vd_source=f639eb9fcc66d95ccfcf3a156a38c44e
+
+3.WINDOWS 内网穿透 宝塔
+https://www.bilibili.com/video/BV15t411z7hk/?spm_id_from=333.788.recommend_more_video.13&vd_source=f639eb9fcc66d95ccfcf3a156a38c44e

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>书籍展示</title>
+    <title>客户产品展示</title>
 <%--    用Bootstrap 美化界面--%>
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -20,15 +20,15 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>书籍列表 ------显示所有书籍</small>
+                    <small>客户列表 ------显示所有客户</small>
                 </h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 column">
 <%--                toaddBook--%>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/toAddBook">新增书籍</a>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/allBook">显示全部书籍</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/toAddBook">新增客户</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/allBook">显示全部客户</a>
             </div>
 
             <div class="col-md-8 column">
@@ -47,10 +47,10 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                    <th>书籍编号</th>
-                    <th>书籍名称</th>
-                    <th>书籍数量</th>
-                    <th>书籍详情</th>
+                    <th>客户编号</th>
+                    <th>客户名称</th>
+                    <th>产品数量</th>
+                    <th>产品详情</th>
                     <th>操作</th>
                 </tr>
 

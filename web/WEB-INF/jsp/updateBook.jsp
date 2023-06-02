@@ -18,7 +18,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>修改书籍</small>
+                    <small>修改客户信息</small>
                 </h1>
             </div>
         </div>
@@ -29,15 +29,15 @@
 <%--        SQL语句updateBook，需要ID，所以前端 构建隐藏域--%>
         <input type="hidden" name="bookID" value="${Qbook.bookID}" >
         <div class="form-group">
-            <label>书籍名称：</label>
+            <label>客户名称：</label>
             <input type="text" name="bookName"class="form-control" value="${Qbook.bookName}" required>
         </div>
         <div class="form-group">
-            <label>书籍数量：</label>
+            <label>产品数量：</label>
             <input type="text" name="bookCounts" class="form-control" value="${Qbook.bookCounts}" required>
         </div>
         <div class="form-group">
-            <label>书籍描述：</label>
+            <label>产品描述：</label>
             <input type="text" name="detail" class="form-control" value="${Qbook.detail}" required>
         </div>
         <div class="form-group">

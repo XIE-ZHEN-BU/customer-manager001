@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ssmbulid" />
+        <module name="练手项目 SSM整合 客户管理系统" />
       </profile>
     </annotationProcessing>
   </component>

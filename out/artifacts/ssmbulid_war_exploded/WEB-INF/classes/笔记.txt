@@ -1,0 +1,128 @@
+1.
+IDEA中文乱码 解决方案 https://blog.csdn.net/Sw_479/article/details/120292078
+JDK版本是1.8才匹配
+重头学 html css js jsp 现在思路贼清晰
+插入书籍乱码的，注意properties文件中不用&amp；转义，xml文件配置中才用&amp；
+2.
+数据库链接 
+root
+123456
+同时 schemas 要选中 lenos才会显示这个表 不然只是默认显示blog
+3.
+在JAVA文件 COM.Kuang 层级下
+Dao层    Service层   Controller层    pojo层
+前端 调用 controller 、 controller调用 服务层 service   
+
+在resourece文件层级下
+applicationContext.xml
+mybatis-config.xml
+4.宏观的看 四个层级
+pojo
+->
+dao层 (写接口 和 XML SQL语句）
+->
+service层（写接口的JAVA文件和 实现接口的JAVA文件）service层是处理事务的，数据库事务。
+->
+controller（调用 service层的类名；并且对应前端用@RequestMapping注解--对应href ）
+->
+前端代码 
+
+3.
+倒查顺序
+前端代码 留下href${}/**/**  -> 根据/**/**到controller层查看，具体的请求内容，里面一定有service.XXX方法 ->根据service.XXX到service层，查看service.java绿色接口文件留下的接口名字是否正确
+->以及再service层查看，serviceimpl.java文件中Mapper.XXX 的方法名 ->根据Mapper.XXX 名字，去dao层查看Mapper.java绿色接口文件查看接口的名字是否相同->再去Mapper.xml文件查看 SQL语句的id名字是否相同
+4.
+service层的接口和Dao层对比 service层的接口不需要加@Param注解 声明参数
+4.
+【1】Pojo层
+        Pojo层写实体类
+【2】Dao层
+        Dao层有两个文件 一个是JAVA文件 一个是 XML文件
+        DAO层写接口 interface 一般是 Mapper.java文件
+        除此之外还要写BookMapper.xml 文件 里面用XML语法 写SQL语句
+        XML文件中 ID 就是 DAO接口 interface里面的方法名字 parameterType也是后面的参数类型（如INT）
+        select 语句一般对于 resultType=实体类的类名
+        其他的语句 一般就是一个parameterType=POJO方法内部的参数类型
+--接下来就是去写 业务层了 service层
+【3】Service层
+        Service层一般是去调用DAO层
+        两个文件 
+     第一
+               一般是复制Dao写好的实体类，再加以改进
+               是 BookService 写接口的方法的名字 
+     
+     
+     第二 
+         一个是   BookServiceImpl写实现类
+         BookServiceImpl 第一要implements BookService 
+         一般调用 DAO层中的BookMapper 语法为 private BookMapper bookMapper;
+         用快捷键 重写BookService中的方法 
+         然后 可以用注解 直接GETTTER和SETTER
+【4】controller
+        其中controller是调用service层的
+        controller层 是最后 和JSP互动的 业务层
+        第一
+            一般调用service层的语法为 private BookService bookService;
+        第二
+                     用@RequestMapping扫描前端留下来的href="${pageContext.request.contextPath}/**/**这种关键字
+                     @RequestMapping(‘’ ‘’)里面填写的就是/**/**
+            要注意递进顺序，一般controller类上面的@RequestMapping(‘’ ‘’)里面写的是一级地址，下面的方法@RequestMapping(‘’ ‘’)写的是二级地址
+              第三
+            一般，新建对象，并且传给前端的语法，用XX.addAttribute("**",**);
+             public String list(Model model){//Model 是自定义的 传进来的参数，
+             
+             List<Books> list=bookService.queryAllBook();//这里要调用的是业务层的方法 service层写好的，并且 要新建一个对象接受service方法的内容
+             model.addAttribute("list",list);
+
+             return "allBook";
+             }
+        第四
+                    值得注意的是，controller调用service层的体现是，用service层的类，调用方法
+
+5.spring配置文件
+【1】在resource下建立spring-dao.xml配置文件
+【2】关联数据库配置文件、数据库连接池、sqlSessionFactory
+
+6.@RequestMapping() 这个注解一般是 扫描前端留的关键字的注解的
+
+7.常见的 HTTP404 debug 
+网址：https://blog.csdn.net/munangs/article/details/120261733?spm=1001.2014.3001.5502
+原因1：file->project structure->artifacts->+号->web applocation exploded->from modules(如果web applocation exploded 右边没有小箭头，意味你的项目没有被IDEA识别（选择artifacts上的modules进行配置，实在不行重建project）)
+原因2：tomcat 配置的Server URL和deployment里面application context的网址 尾缀不一样
+edit configurations->tomcat server->local->configure选择本地tomcat包->然后点击万能的FIX->自动同步Server URL和deployment里面application context的网址
+
+7.Tomacat 配置
+Tomcat第一次启动报错的，请务必这样操作：File-->Project Setting-->Artifacts-->Available Elements下面右键点你的项目，选择Put into Output Root就可以建好lib包
+查看方式，点左侧中WEB-INF展开就有lib包。
+8.idea中Tomcat中添加servlet-api.jar
+File–>project structure -> library->Modules（+）–>java—>选择自己的项目
+File–>project structure -> library->Modules（+）–>java—>选择servlet-api.jar
+
+8.报错：java.sql.SQLException: Access denied for user 'jdbc.username'@'localhost' (using password: YES)
+第一：查看 database.properties 信息有没有写错
+第二：查看 spring-dao.xml 数据库连接池 信息中 value有没有在后面加${}
+
+9.我选择用BootStrap直接拿样式，方便
+
+10.前端 <a href=""></a>按钮一般可以实现跳转
+而 跳转的内容 要在 最接近前端的 controller 层来写
+
+11.一般传参数 pojo实体类 总类名的 大写和小写 是包括了 类里面的每一个变量
+ 
+12.前端的页面 跳转关键字 一般在 href’‘${}’‘  和 form action=’‘${}’‘  这里留
+
+11.前端-》controller层-》service层-》dao层-》数据库层(XML文件)
+
+11.快捷键 ctrl+alt+7
+
+12.JAVA方法和类的区别 https://blog.csdn.net/liulei952413829/article/details/114596195
+类没有括号，方法后面有括号。
+调用其他类中的方法，首先通过 Test test=new Test()创造对象，实例化类；接着result=test.Add() 用对象调用方法
+
+12.加一个事务功能
+Dao层 接口文件
+Bools queryBookByName(String bookName);
+
+Dao层XML 数据库 语句
+
+
